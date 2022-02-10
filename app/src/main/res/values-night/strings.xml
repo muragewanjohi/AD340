@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
     <string name="enter_zip_code">Enter Your Zip Code</string>
     <string name="submit_zipcode">Submit ZipCode</string>
 </resources>
