@@ -1,0 +1,83 @@
+
+entity Region {
+	regionName String
+}
+entity Client{
+	clientName String,
+    industry String,
+    email String,
+	phoneNumber String
+}
+/**
+ * The SalesAgent entity.
+ */
+entity SalesAgent {
+	/**
+	* The firstname attribute.
+	*/
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String
+}
+
+entity Customer {
+	customerName String,
+    geoLocatoin Long,
+    email String,
+	phoneNumber String
+}
+
+entity Comment {
+	title String,
+    description String
+}
+
+entity Product {
+	name String,
+    skuCode Long,
+    description String
+}
+
+entity Order {
+    quantity Integer,
+    orderDate Instant
+}
+
+entity Return {
+    quantity Integer,
+    description String,
+    returnDate Instant
+}
+
+entity Journey {
+    startLocation Long,
+    duration Long,
+    endLocation Long
+}
+
+
+
+relationship OneToMany {
+	Client{region} to Region,
+    Client{salesAgent} to SalesAgent,
+    Region{salesAgent} to SalesAgent,
+    SalesAgent{journey} to Journey,
+    Region{customer} to Customer,
+    Journey{customer} to Customer,
+    Customer{comment} to Comment,
+    Customer{order} to Order,
+    Order{product} to Product,
+    Customer{return} to Return,
+    Return{product} to Product,
+}
+
+// Set pagination options
+paginate Client, Region, Product with infinite-scroll
+paginate Order, Return with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
